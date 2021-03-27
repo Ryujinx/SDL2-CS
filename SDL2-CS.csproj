@@ -9,6 +9,7 @@
         <RootNamespace>SDL2</RootNamespace>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <Version>2.0.14.1</Version>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
     <PropertyGroup Label="NuGet">
         <Authors>Thog &amp; ppy Pty Ltd &amp; flibitijibibo</Authors>
@@ -48,5 +49,11 @@
         <Content Include="app.config">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="LICENSE">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
     </ItemGroup>
 </Project>
