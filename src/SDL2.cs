@@ -599,6 +599,38 @@ namespace SDL2
 		public const string SDL_HINT_GAMECONTROLLERTYPE =
 			"SDL_GAMECONTROLLERTYPE";
 
+		/* Only available in 2.0.14 or higher. */
+		public const string SDL_HINT_MOUSE_RELATIVE_SCALING =
+			"SDL_HINT_MOUSE_RELATIVE_SCALING";
+		public const string SDL_HINT_JOYSTICK_HIDAPI_PS5 =
+			"SDL_HINT_JOYSTICK_HIDAPI_PS5";
+		public const string SDL_HINT_JOYSTICK_HIDAPI_CORRELATE_XINPUT =
+			"SDL_HINT_JOYSTICK_HIDAPI_CORRELATE_XINPUT";
+		public const string SDL_HINT_JOYSTICK_RAWINPUT =
+			"SDL_HINT_JOYSTICK_RAWINPUT";
+		public const string SDL_HINT_JOYSTICK_THREAD =
+			"SDL_HINT_JOYSTICK_THREAD";
+		public const string SDL_HINT_LINUX_JOYSTICK_DEADZONES =
+			"SDL_HINT_LINUX_JOYSTICK_DEADZONES";
+		public const string SDL_HINT_THREAD_PRIORITY_POLICY =
+			"SDL_HINT_THREAD_PRIORITY_POLICY";
+		public const string SDL_HINT_THREAD_FORCE_REALTIME_TIME_CRITICAL =
+			"SDL_HINT_THREAD_FORCE_REALTIME_TIME_CRITICAL";
+		public const string SDL_HINT_ANDROID_BLOCK_ON_PAUSE_PAUSEAUDIO =
+			"SDL_HINT_ANDROID_BLOCK_ON_PAUSE_PAUSEAUDIO";
+		public const string SDL_HINT_EMSCRIPTEN_ASYNCIFY =
+			"SDL_HINT_EMSCRIPTEN_ASYNCIFY";
+		public const string SDL_HINT_AUTO_UPDATE_JOYSTICKS =
+			"SDL_HINT_AUTO_UPDATE_JOYSTICKS";
+		public const string SDL_HINT_AUTO_UPDATE_SENSORS =
+			"SDL_HINT_AUTO_UPDATE_SENSORS";
+		public const string SDL_HINT_AUDIO_DEVICE_APP_NAME =
+			"SDL_HINT_AUDIO_DEVICE_APP_NAME";
+		public const string SDL_HINT_AUDIO_DEVICE_STREAM_NAME =
+			"SDL_HINT_AUDIO_DEVICE_STREAM_NAME";
+		public const string SDL_HINT_PREFERRED_LOCALES =
+			"SDL_HINT_PREFERRED_LOCALES";
+
 		public enum SDL_HintPriority
 		{
 			SDL_HINT_DEFAULT,
@@ -3301,34 +3333,38 @@ namespace SDL2
 				SDL_PackedLayout.SDL_PACKEDLAYOUT_332,
 				8, 1
 			);
-		public static readonly uint SDL_PIXELFORMAT_RGB444 =
+		public static readonly uint SDL_PIXELFORMAT_XRGB4444 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_PACKED16,
 				(uint) SDL_PackedOrder.SDL_PACKEDORDER_XRGB,
 				SDL_PackedLayout.SDL_PACKEDLAYOUT_4444,
 				12, 2
 			);
-		public static readonly uint SDL_PIXELFORMAT_BGR444 =
+		public static readonly uint SDL_PIXELFORMAT_RGB444 = SDL_PIXELFORMAT_XRGB4444;
+		public static readonly uint SDL_PIXELFORMAT_XBGR4444 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_PACKED16,
 				(uint) SDL_PackedOrder.SDL_PACKEDORDER_XBGR,
 				SDL_PackedLayout.SDL_PACKEDLAYOUT_4444,
 				12, 2
 			);
-		public static readonly uint SDL_PIXELFORMAT_RGB555 =
+		public static readonly uint SDL_PIXELFORMAT_BGR444 = SDL_PIXELFORMAT_XBGR4444;
+		public static readonly uint SDL_PIXELFORMAT_XRGB1555 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_PACKED16,
 				(uint) SDL_PackedOrder.SDL_PACKEDORDER_XRGB,
 				SDL_PackedLayout.SDL_PACKEDLAYOUT_1555,
 				15, 2
 			);
-		public static readonly uint SDL_PIXELFORMAT_BGR555 =
+		public static readonly uint SDL_PIXELFORMAT_RGB555 = SDL_PIXELFORMAT_XRGB1555;
+		public static readonly uint SDL_PIXELFORMAT_XBGR155 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_INDEX1,
 				(uint) SDL_BitmapOrder.SDL_BITMAPORDER_4321,
 				SDL_PackedLayout.SDL_PACKEDLAYOUT_1555,
 				15, 2
 			);
+		public static readonly uint SDL_PIXELFORMAT_BGR555 = SDL_PIXELFORMAT_XBGR155;
 		public static readonly uint SDL_PIXELFORMAT_ARGB4444 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_PACKED16,
@@ -3413,13 +3449,14 @@ namespace SDL2
 				0,
 				24, 3
 			);
-		public static readonly uint SDL_PIXELFORMAT_RGB888 =
+		public static readonly uint SDL_PIXELFORMAT_XRGB8888 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_PACKED32,
 				(uint) SDL_PackedOrder.SDL_PACKEDORDER_XRGB,
 				SDL_PackedLayout.SDL_PACKEDLAYOUT_8888,
 				24, 4
 			);
+		public static readonly uint SDL_PIXELFORMAT_RGB888 = SDL_PIXELFORMAT_XRGB8888;
 		public static readonly uint SDL_PIXELFORMAT_RGBX8888 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_PACKED32,
@@ -3427,13 +3464,14 @@ namespace SDL2
 				SDL_PackedLayout.SDL_PACKEDLAYOUT_8888,
 				24, 4
 			);
-		public static readonly uint SDL_PIXELFORMAT_BGR888 =
+		public static readonly uint SDL_PIXELFORMAT_XBGR8888 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_PACKED32,
 				(uint) SDL_PackedOrder.SDL_PACKEDORDER_XBGR,
 				SDL_PackedLayout.SDL_PACKEDLAYOUT_8888,
 				24, 4
 			);
+		public static readonly uint SDL_PIXELFORMAT_BGR888 = SDL_PIXELFORMAT_XBGR8888;
 		public static readonly uint SDL_PIXELFORMAT_BGRX8888 =
 			SDL_DEFINE_PIXELFORMAT(
 				SDL_PixelType.SDL_PIXELTYPE_PACKED32,
@@ -4145,6 +4183,12 @@ namespace SDL2
 			IntPtr surface,
 			int flag
 		);
+
+		/* surface refers to an SDL_Surface*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_HasSurfaceRLE(IntPtr surface);
 
 		/* src and dst refer to an SDL_Surface* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -5858,6 +5902,36 @@ namespace SDL2
 			UInt32 duration_ms
 		);
 
+		/* joystick refers to an SDL_Joystick*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_JoystickRumbleTriggers(
+			IntPtr joystick,
+			UInt16 left_rumble,
+			UInt16 right_rumble,
+			UInt32 duration_ms
+		);
+
+		/* joystick refers to an SDL_Joystick*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_JoystickHasLED(
+			IntPtr joystick
+		);
+
+		/* joystick refers to an SDL_Joystick*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_JoystickSetLED(
+			IntPtr joystick,
+			byte red,
+			byte green,
+			byte blue
+		);
+
 		/* joystick refers to an SDL_Joystick* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SDL_JoystickClose(IntPtr joystick);
@@ -6026,6 +6100,21 @@ namespace SDL2
 		public static extern ushort SDL_JoystickGetProductVersion(IntPtr joystick);
 
 		/* joystick refers to an SDL_Joystick*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, EntryPoint = "SDL_JoystickGetSerial", CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr INTERNAL_SDL_JoystickGetSerial(IntPtr joystick);
+
+		public static string SDL_SDL_JoystickGetSerial(IntPtr joystick)
+		{
+			return UTF8_ToManaged(
+				INTERNAL_SDL_JoystickGetSerial(
+					joystick
+				)
+			);
+		}
+
+		/* joystick refers to an SDL_Joystick*.
 		 * Only available in 2.0.6 or higher.
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -6066,6 +6155,57 @@ namespace SDL2
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr SDL_JoystickFromPlayerIndex(int player_index);
+
+		/*
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_JoystickAttachVirtual(SDL_JoystickType type,
+			int naxes,
+			int nbuttons,
+			int nhats);
+
+		/*
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_JoystickDetachVirtual(int device_index);
+
+		/*
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_JoystickIsVirtual(int device_index);
+
+		/* IntPtr refers to an SDL_Joystick*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_JoystickSetVirtualAxis(
+			IntPtr joystick,
+			int axis,
+			short value
+		);
+
+		/* IntPtr refers to an SDL_Joystick*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_JoystickSetVirtualButton(
+			IntPtr joystick,
+			int button,
+			byte value
+		);
+
+		/* IntPtr refers to an SDL_Joystick*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_JoystickSetVirtualHat(
+			IntPtr joystick,
+			int hat,
+			byte value
+		);
 
 		/* IntPtr refers to an SDL_Joystick*.
 		 * Only available in 2.0.11 or higher.
@@ -6118,6 +6258,12 @@ namespace SDL2
 			SDL_CONTROLLER_BUTTON_DPAD_DOWN,
 			SDL_CONTROLLER_BUTTON_DPAD_LEFT,
 			SDL_CONTROLLER_BUTTON_DPAD_RIGHT,
+			SDL_CONTROLLER_BUTTON_MISC1,
+			SDL_CONTROLLER_BUTTON_PADDLE1,
+			SDL_CONTROLLER_BUTTON_PADDLE2,
+			SDL_CONTROLLER_BUTTON_PADDLE3,
+			SDL_CONTROLLER_BUTTON_PADDLE4,
+			SDL_CONTROLLER_BUTTON_TOUCHPAD,
 			SDL_CONTROLLER_BUTTON_MAX,
 		}
 
@@ -6128,7 +6274,9 @@ namespace SDL2
 			SDL_CONTROLLER_TYPE_XBOXONE,
 			SDL_CONTROLLER_TYPE_PS3,
 			SDL_CONTROLLER_TYPE_PS4,
-			SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_PRO
+			SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_PRO,
+			SDL_CONTROLLER_TYPE_VIRTUAL,
+			SDL_CONTROLLER_TYPE_PS5
 		}
 
 		// FIXME: I'd rather this somehow be private...
@@ -6303,6 +6451,23 @@ namespace SDL2
 			IntPtr gamecontroller
 		);
 
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, EntryPoint = "SDL_GameControllerGetSerial", CallingConvention = CallingConvention.Cdecl)]
+		private static extern IntPtr INTERNAL_SDL_GameControllerGetSerial(
+			IntPtr gamecontroller
+		);
+
+		public static string SDL_GameControllerGetSerial(
+			IntPtr gamecontroller
+		)
+		{
+			return UTF8_ToManaged(
+				INTERNAL_SDL_GameControllerName(gamecontroller)
+			);
+		}
+
 		/* gamecontroller refers to an SDL_GameController* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern SDL_bool SDL_GameControllerGetAttached(
@@ -6371,6 +6536,15 @@ namespace SDL2
 			return result;
 		}
 
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern bool SDL_GameControllerHasAxis(
+			IntPtr gamecontroller,
+			SDL_GameControllerAxis axis
+		);
+
 		/* gamecontroller refers to an SDL_GameController* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern short SDL_GameControllerGetAxis(
@@ -6424,11 +6598,90 @@ namespace SDL2
 			return result;
 		}
 
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_GameControllerHasButton(
+			IntPtr gamecontroller,
+			SDL_GameControllerButton button
+		);
+
 		/* gamecontroller refers to an SDL_GameController* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern byte SDL_GameControllerGetButton(
 			IntPtr gamecontroller,
 			SDL_GameControllerButton button
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_GameControllerGetNumTouchpads(
+			IntPtr gamecontroller
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_GameControllerGetNumTouchpadFingers(
+			IntPtr gamecontroller,
+			int touchpad
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_GameControllerGetTouchpadFinger(
+			IntPtr gamecontroller,
+			int touchpad,
+			int finger,
+			out byte state,
+			out float x,
+			out float y,
+			out float pressure
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_GameControllerHasSensor(
+			IntPtr gamecontroller,
+			SDL_SensorType type
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_GameControllerSetSensorEnabled(
+			IntPtr gamecontroller,
+			SDL_SensorType type,
+			SDL_bool enabled
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_GameControllerIsSensorEnabled(
+			IntPtr gamecontroller,
+			SDL_SensorType type
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_GameControllerIsSensorEnabled(
+			IntPtr gamecontroller,
+			SDL_SensorType type,
+			float[] data,
+			int num_values
 		);
 
 		/* gamecontroller refers to an SDL_GameController*.
@@ -6441,6 +6694,36 @@ namespace SDL2
 			UInt16 high_frequency_rumble,
 			UInt32 duration_ms
 		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int SDL_GameControllerRumbleTriggers(
+			IntPtr gamecontroller,
+			UInt16 left_rumble,
+			UInt16 right_rumble,
+			UInt32 duration_ms
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_GameControllerHasLED(
+			IntPtr gamecontroller
+		);
+
+		/* gamecontroller refers to an SDL_GameController*.
+		 * Only available in 2.0.14 or higher.
+		 */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern SDL_bool SDL_GameControllerSetLED(
+			IntPtr gamecontroller,
+			byte red,
+			byte green,
+			byte blue
+		);		
 
 		/* gamecontroller refers to an SDL_GameController* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
@@ -6507,9 +6790,11 @@ namespace SDL2
 		public const ushort SDL_HAPTIC_PAUSE =		(1 << 15);
 
 		/* SDL_HapticDirection type */
-		public const byte SDL_HAPTIC_POLAR =		0;
-		public const byte SDL_HAPTIC_CARTESIAN =	1;
-		public const byte SDL_HAPTIC_SPHERICAL =	2;
+		public const byte SDL_HAPTIC_POLAR =		 0;
+		public const byte SDL_HAPTIC_CARTESIAN =	 1;
+		public const byte SDL_HAPTIC_SPHERICAL =	 2;
+		/* Only available in 2.0.11 or higher. */
+		public const byte SDL_HAPTIC_STEERING_AXIS = 3;
 
 		/* SDL_HapticRunEffect */
 		public const uint SDL_HAPTIC_INFINITY = 4294967295U;
@@ -6835,6 +7120,14 @@ namespace SDL2
 		}
 
 		public const float SDL_STANDARD_GRAVITY = 9.80665f;
+
+		/* Only available in 2.0.14 or higher. */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void SDL_LockSensors();
+
+		/* Only available in 2.0.14 or higher. */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern void SDL_UnlockSensors();
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern int SDL_NumSensors();
@@ -7675,6 +7968,10 @@ namespace SDL2
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr SDL_SIMDAlloc(uint len);
 
+		/* Only available in SDL 2.0.14 or higher. */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr SDL_SIMDRealloc(IntPtr ptr, uint len);
+
 		/* Only available in SDL 2.0.10 or higher. */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SDL_SIMDFree(IntPtr ptr);
@@ -7683,6 +7980,19 @@ namespace SDL2
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void SDL_HasARMSIMD();
 
+		#endregion
+
+		#region SDL_misc.h
+		 /* Only available in 2.0.14 or higher. */
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
+		public static extern int INTERNAL_SDL_OpenURL(byte[] url);
+
+		public static int SDL_OpenURL(string url)
+		{
+			return INTERNAL_SDL_OpenURL(
+				UTF8_ToNative(url)
+			);
+		}
 		#endregion
 	}
 }
