@@ -8,7 +8,7 @@
         <Description>libSDL2 bindings for C#</Description>
         <RootNamespace>SDL2</RootNamespace>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <Version>2.0.14.1</Version>
+        <Version>2.0.14.2</Version>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
     <PropertyGroup Label="NuGet">

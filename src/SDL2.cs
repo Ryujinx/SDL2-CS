@@ -630,6 +630,8 @@ namespace SDL2
 			"SDL_HINT_AUDIO_DEVICE_STREAM_NAME";
 		public const string SDL_HINT_PREFERRED_LOCALES =
 			"SDL_HINT_PREFERRED_LOCALES";
+		public const string SDL_HINT_JOYSTICK_HIDAPI_PS5_RUMBLE =
+			"SDL_HINT_JOYSTICK_HIDAPI_PS5_RUMBLE";
 
 		public enum SDL_HintPriority
 		{
@@ -6677,7 +6679,7 @@ namespace SDL2
 		 * Only available in 2.0.14 or higher.
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
-		public static extern int SDL_GameControllerIsSensorEnabled(
+		public static extern int SDL_GameControllerGetSensorData(
 			IntPtr gamecontroller,
 			SDL_SensorType type,
 			float[] data,
