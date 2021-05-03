@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - uses: nuget/setup-nuget@v1
+      with:
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+        nuget-version: '5.x'
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Pack & Publish
+      run: |
+        dotnet pack --version-suffix "build${{ github.run_number }}" -c Release .\SDL2-CS.csproj -o .
+        $file_to_publish = Get-ChildItem -Path $dir -Filter *.nupkg | Select -First 1
+        echo $file_to_publish
+        nuget push $file_to_publish -Source https://api.nuget.org/v3/index.json
