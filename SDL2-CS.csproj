@@ -8,13 +8,14 @@
         <Description>libSDL2 bindings for C#</Description>
         <RootNamespace>SDL2</RootNamespace>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <VersionPrefix>2.0.15</VersionPrefix>
     </PropertyGroup>
     <PropertyGroup Label="NuGet">
-        <Authors>ppy Pty Ltd &amp; flibitijibibo</Authors>
+        <Authors>Thog &amp; ppy Pty Ltd &amp; flibitijibibo</Authors>
         <Title>SDL2#</Title>
-        <PackageId>ppy.SDL2-CS</PackageId>
-        <PackageProjectUrl>https://github.com/ppy/SDL2-CS</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/ppy/SDL2-CS</RepositoryUrl>
+        <PackageId>Ryujinx.SDL2-CS</PackageId>
+        <PackageProjectUrl>https://github.com/Ryujinx/SDL2-CS</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Ryujinx/SDL2-CS</RepositoryUrl>
     </PropertyGroup>
     <ItemGroup>
         <Content Include="$(MSBuildThisFileDirectory)native\win-x64\SDL2.dll">
@@ -30,6 +31,11 @@
         <Content Include="$(MSBuildThisFileDirectory)native\win-x86\SDL2.dll">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <PackagePath>runtimes/win-x86/native</PackagePath>
+            <Pack>true</Pack>
+        </Content>
+        <Content Include="$(MSBuildThisFileDirectory)native\win-arm64\SDL2.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <PackagePath>runtimes/win-arm64/native</PackagePath>
             <Pack>true</Pack>
         </Content>
         <Content Include="$(MSBuildThisFileDirectory)native\osx-x64\libSDL2.dylib">

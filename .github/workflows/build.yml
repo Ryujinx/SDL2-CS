@@ -1,6 +1,6 @@
 name: build-native
 on:
-  push:
+#  push:
   workflow_dispatch:
     inputs: {}
 #  schedule:
@@ -16,9 +16,9 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: win-x64,   os: windows-latest, flags: -A x64                                                                            }
-        - { name: win-x86,   os: windows-latest, flags: -A Win32                                                                          }
-        - { name: win-arm64, os: windows-latest, flags: -A ARM64                                                                          }
+        - { name: win-x64,   os: windows-latest, flags: -A x64 -DHAVE_DINPUT_H=0                                                          }
+        - { name: win-x86,   os: windows-latest, flags: -A Win32 -DHAVE_DINPUT_H=0                                                        }
+        - { name: win-arm64, os: windows-latest, flags: -A ARM64 -DHAVE_DINPUT_H=0                                                        }
         - { name: linux-x64, os: ubuntu-18.04,   flags: -GNinja , target_apt_arch: ":amd64"                                               }
         - { name: linux-x86, os: ubuntu-18.04,   flags: -GNinja, cmake_configure_env: CFLAGS=-m32 CXXFLAGS=-m32, target_apt_arch: ":i386" }
         - { name: osx-x64,   os: macos-latest,   flags: -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_OSX_DEPLOYMENT_TARGET="10.14"          }
@@ -68,7 +68,7 @@ jobs:
           g++-multilib
     - uses: actions/checkout@v2
       with:
-        repository: ppy/SDL
+        repository: libsdl-org/SDL
     - uses: actions/checkout@v2
       with:
         path: 'SDL2-CS'
