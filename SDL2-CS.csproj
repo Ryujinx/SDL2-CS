@@ -33,11 +33,6 @@
             <PackagePath>runtimes/win-x86/native</PackagePath>
             <Pack>true</Pack>
         </Content>
-        <Content Include="$(MSBuildThisFileDirectory)native\win-arm64\SDL2.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <PackagePath>runtimes/win-arm64/native</PackagePath>
-            <Pack>true</Pack>
-        </Content>
         <Content Include="$(MSBuildThisFileDirectory)native\osx-x64\libSDL2.dylib">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <PackagePath>runtimes/osx-x64/native</PackagePath>
